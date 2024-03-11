@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="me-5 ms-5">
+  <div class="row">
+    <div class="col">
+      <section class="mb-3 me-2">
+        <nav style="--bs-breadcrumb-divider: '>';">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item me-2"><a href="{% url 'landingPage'%}"><i class="fa-solid fa-house"
+                  style="color:#335e90;"></i></a></li>
+            <li class="breadcrumb-item me-2"><a class="fw-bold text-decoration-none" style="color:#335e90;"
+                href="{% url 'landingPage'%}">الرئيسية</a></li>
+            <li class="breadcrumb-item me-2"><a class="text-decoration-none" style="color:#6aa6cc;"
+                href="{% url 'showSkincare'%}">الدفع </a></li>
+          </ol>
+        </nav>
+      </section>
+
+      <section class="mb-4 me-3 ms-3 mt-5 text-center">
+        <div class="row">
+          <div class="col">
+            <div class="card rounded-circle-3 ms-4 mb-4 p-5">
+              <div class="row">
+                  <div class="col-md-5 col-lg-4 ">
+                    <ul class="list-group mb-3">
+                      <li class="list-unstyled">
+                        <h4 class="d-flex align-items-center mb-3">
+                          <span class="fw-bold" >السلة</span>
+                          <span class="badge success rounded-pill me-2">{{request.session.countcart}}</span>
+                        </h4>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                          <h6 class="my-0">اسم المنتج</h6>
+                        </div>     
+                        <span class="text-body-secondary">{{productname}}</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                          <h6 class="my-0">السعر</h6>
+                         
+                        </div>
+                        <span class="text-body-secondary">{{cart.price}}</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                          <h6 class="my-0">الضريبة</h6>
+                       
+                        </div>
+                        <span class="text-body-secondary">{{cart.tax}}</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                        <div class="text-success">
+                          <h6 class="my-0">المجموع الكلي</h6>
+                         
+                        </div>
+                        <span class="text-success">{{cart.total}}</span>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between">
+                        <span>NET (SAR)</span>
+                        <strong>{{cart.total}}</strong>
+                      </li>
+                      <li class="list-unstyled">
+                        <form class="card p-2">
+                          <div class="input-group">
+                            <input type="text" class="form-control" placeholder="كوبون خصم">
+                            <button type="submit" class="btn btn-secondary">خصم</button>
+                          </div>
+                        </form>
+                      </li>
+                    </ul>
+                
+                    
+                  </div>
+
+                  <div class="col-md-7 col-lg-8 text-end">
+                    <h4 class="mb-3">عنوان الفوترة</h4>
+                    <form class="needs-validation" novalidate>
+                      <div class="row g-3">
+                        <div class="col-sm-6">
+                          <label for="firstName" class="form-label">الاسم الأول</label>
+                          <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                          <div class="invalid-feedback">
+                            حقل الاسم الأول مطلوب
+                          </div>
+                        </div>
+            
+                        <div class="col-sm-6">
+                          <label for="lastName" class="form-label">الاسم الأخير</label>
+                          <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                          <div class="invalid-feedback">
+                            حقل الاسم الأخير مطلوب
+                          </div>
+                        </div>
+            
+                        <div class="col-12">
+                          <label for="email" class="form-label">البريد الالكتروني <span class="text-body-secondary">(اختياري)</span></label>
+                          <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                          <div class="invalid-feedback">
+                            من فضلك أدخل بريد الكتروني صحيح
+                          </div>
+                        </div>
+            
+                        <div class="col-12">
+                          <label for="address" class="form-label">العنوان</label>
+                          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                          <div class="invalid-feedback">
+                            أدخل عنوان الشحن
+                          </div>
+                        </div>
+            
+                        <div class="col-12">
+                          <label for="address2" class="form-label">العنوان 2<span class="text-body-secondary">(اختياري)</span></label>
+                          <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                        </div>
+            
+                        <div class="col-md-5">
+                          <label for="country" class="form-label">الدولة</label>
+                          <select class="form-select" id="country" required>
+                            <option value="">اختر...</option>
+                            <option>الممكلة العربية السعودية</option>
+                          </select>
+                          <div class="invalid-feedback">
+                            أدخل الدولة
+                          </div>
+                        </div>
+            
+                        <div class="col-md-4">
+                          <label for="state" class="form-label">المدينة</label>
+                          <select class="form-select" id="state" required>
+                            <option value="">اختر...</option>
+                            <option>مكة المكرمة</option>
+                          </select>
+                          <div class="invalid-feedback">
+                            أدخل المدينة
+                          </div>
+                        </div>
+            
+                        <div class="col-md-3">
+                          <label for="zip" class="form-label">الرمز البريدي</label>
+                          <input type="text" class="form-control" id="zip" placeholder="" required>
+                          <div class="invalid-feedback">
+                            الرمز البريدي مطلوب
+                          </div>
+                        </div>
+                      </div>
+            
+                      <hr class="my-4">
+      
+            
+                      <h4 class="mb-3">الدفع</h4>
+            
+                      <div class="my-3 text-start">
+                        <div class="form-check">
+                          <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                          <label class="form-check-label" for="credit">Credit card</label>
+                        </div>
+                        <div class="form-check">
+                          <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                          <label class="form-check-label" for="debit">Debit card</label>
+                        </div>
+                        <div class="form-check">
+                          <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                          <label class="form-check-label" for="paypal">PayPal</label>
+                        </div>
+                      </div>
+            
+                      <div class="row gy-3">
+                        <div class="col-md-6">
+                          <label for="cc-name" class="form-label">الاسم على البطاقة</label>
+                          <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                          <small class="text-body-secondary">الاسم الذي يظهر على البطاقة</small>
+                          <div class="invalid-feedback">
+                            اسم البطاقة مطلوب
+                          </div>
+                        </div>
+            
+                        <div class="col-md-6">
+                          <label for="cc-number" class="form-label">رقم البطاقة</label>
+                          <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                          <div class="invalid-feedback">
+                            رقم البطاقة مطلوب
+                          </div>
+                        </div>
+            
+                        <div class="col-md-3">
+                          <label for="cc-expiration" class="form-label">تاريخ الانتهاء</label>
+                          <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                          <div class="invalid-feedback">
+                            تاريخ الانتهاء مطلوب
+                          </div>
+                        </div>
+            
+                        <div class="col-md-3">
+                          <label for="cc-cvv" class="form-label">رمز الأمان</label>
+                          <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                          <div class="invalid-feedback">
+                            رمز الأمان مطلوب
+                          </div>
+                        </div>
+                      </div>
+            
+                      <hr class="my-4">
+            
+                      <button class="w-100 btn success btn-lg" type="submit">استمر للدفع</button>
+                    </form>
+                  </div>
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+  </div>
+  </section>
+
+</div>
+</div>
+</div>
+
+{% endblock %}
